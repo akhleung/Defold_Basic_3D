@@ -1,1 +1,3 @@
-This is a basic 3D Defold project intended to demonstrate a bug / regression between the old and new shader pipelines when upgrading from 1.9.1 to 1.9.2.
+This is a basic 3D Defold project intended to demonstrate a bug / regression between the old and new shader pipelines in Defold 1.9.2.
+
+Instructions: Run the `old-pipeline` branch in 1.9.2, and a simple 3D scene will be displayed, illuminated by a green point light on the left, and a red point light on the right. Switch to the `new-pipeline` branch and run the project -- the point lights will now appear to be located at the camera position. The only changes are migrating the shaders to 4.2, and using constants from the new graphics module rather than the old render module.
