@@ -13,17 +13,14 @@ uniform model_vp {
     mat4 mtx_view;
     mat4 mtx_proj;
     mat4 mtx_normal;
-    vec4 light;
 };
 
 out vec4 var_position;
 out vec3 var_normal;
 out vec2 var_texcoord0;
-out vec4 var_light;
 
 void main() {
     vec4 p = mtx_worldview * vec4(position.xyz, 1.0);
-    var_light = mtx_view * vec4(light.xyz, 1.0);
     var_position = p;
     var_texcoord0 = texcoord0;
     var_normal = normalize((mtx_normal * vec4(normal, 0.0)).xyz);
