@@ -26,7 +26,7 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 6.0
+    x: 5.0
   }
 }
 embedded_instances {
@@ -198,7 +198,7 @@ embedded_instances {
   ""
 }
 embedded_instances {
-  id: "light1"
+  id: "point_light_green"
   data: "components {\n"
   "  id: \"point_light\"\n"
   "  component: \"/main/point_light.script\"\n"
@@ -216,12 +216,12 @@ embedded_instances {
   ""
   position {
     x: -7.0
-    y: 500.0
+    y: 5.0
     z: 6.0
   }
 }
 embedded_instances {
-  id: "light2"
+  id: "point_light_red"
   data: "components {\n"
   "  id: \"point_light\"\n"
   "  component: \"/main/point_light.script\"\n"
@@ -238,6 +238,6 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 140.0
+    x: 14.0
   }
 }
