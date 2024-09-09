@@ -160,11 +160,6 @@ function update(self)
 
     update_constants(self.constants)
 
-    local x, y, z = lighting_state.get_lights()
-    self.constants.light_position = x
-    self.constants.light_radii = y
-    self.constants.light_color = z
-
     local predicates = self.predicates
     -- clear screen buffers
     --
