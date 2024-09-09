@@ -1,0 +1,10 @@
+mesh: "/builtins/assets/meshes/quad.dae"
+name: "unnamed"
+materials {
+  name: "default"
+  material: "/materials/model.material"
+  textures {
+    sampler: "diffuse_map"
+    texture: "/assets/images/brown.png"
+  }
+}

@@ -1,0 +1,10 @@
+mesh: "/assets/logo/block.dae"
+name: "block"
+materials {
+  name: "default"
+  material: "/materials/model.material"
+  textures {
+    sampler: "diffuse_map"
+    texture: "/assets/images/broken-ice-base.png"
+  }
+}
