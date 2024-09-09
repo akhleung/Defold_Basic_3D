@@ -216,8 +216,6 @@ embedded_instances {
   ""
   position {
     x: -7.0
-    y: 5.0
-    z: 6.0
   }
 }
 embedded_instances {
@@ -238,6 +236,6 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 14.0
+    x: 9.0
   }
 }
