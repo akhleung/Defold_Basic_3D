@@ -10,7 +10,6 @@ in vec3 normal;
 
 uniform model_vp {
     mat4 mtx_worldview;
-    mat4 mtx_view;
     mat4 mtx_proj;
     mat4 mtx_normal;
 };
