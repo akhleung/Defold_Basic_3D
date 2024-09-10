@@ -242,8 +242,8 @@ update_constants = function(constants)
     num_lights.x, num_lights.y, num_lights.z, num_lights.w = n, n, n, n
     constants.num_lights = num_lights
 
-    local light_position, light_radii, light_color = lighting_state.get_lights()
-    constants.light_position = light_position
+    local light_positions, light_radii, light_colors = lighting_state.get_lights()
+    constants.light_positions = light_positions
     constants.light_radii = light_radii
-    constants.light_color = light_color
+    constants.light_colors = light_colors
 end

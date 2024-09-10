@@ -1,8 +1,4 @@
 #version 420
-// Positions can be world or local space, since world and normal
-// matrices are identity for world vertex space materials.
-// If world vertex space is selected, you can remove the
-// normal matrix multiplication for optimal performance.
 
 in vec4 position;
 in vec2 texcoord0;
@@ -22,7 +18,8 @@ void main() {
     vec4 p = mtx_worldview * vec4(position.xyz, 1.0);
     var_position = p;
     var_texcoord0 = texcoord0;
-    var_normal = normalize((mtx_normal * vec4(normal, 0.0)).xyz);
+    // var_normal = normalize((mtx_normal * vec4(normal, 0.0)).xyz); // using world vertex space, so skip the multiplication
+    var_normal = normal;
     gl_Position = mtx_proj * p;
 }
 

@@ -12,9 +12,9 @@ uniform sampler2D normal_map;
 uniform model_fp {
     mat4 mtx_view;
     vec4 num_lights;
-    vec4 light_position[MAX_LIGHTS];
+    vec4 light_positions[MAX_LIGHTS];
     vec4 light_radii[MAX_LIGHTS];
-    vec4 light_color[MAX_LIGHTS];
+    vec4 light_colors[MAX_LIGHTS];
 };
 
 out vec4 fragColor;
@@ -43,11 +43,11 @@ void main() {
     vec4 color = ambient_light * mat_diff;
 
     for (int i = 0; i < num_lights.x; ++i) {
-        vec4 light_pos = mtx_view * light_position[i];
+        vec4 light_pos = mtx_view * light_positions[i];
         vec3 light_dir = light_direction(var_position.xyz, light_pos.xyz);
         float diff = diffuse(light_dir, var_normal);
         float attn = attenuation(var_position.xyz, light_pos.xyz, light_radii[i]);
-        color += diff * mat_diff * light_color[i] * attn;
+        color += diff * mat_diff * light_colors[i] * attn;
     }
 
     color.a = mat_diff.a;

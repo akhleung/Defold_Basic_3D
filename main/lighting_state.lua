@@ -1,10 +1,10 @@
 local M = {}
 
-local light_position = {}
+local light_positions = {}
 
 local light_radii = {}
 
-local light_color = {}
+local light_colors = {}
 
 local num_lights = 0
 
@@ -15,27 +15,27 @@ local sun_direction = vmath.vector4()
 local sun_color = vmath.vector4();
 
 function M.add_light(position, radii, color)
-    table.insert(light_position, position)
+    table.insert(light_positions, position)
     table.insert(light_radii, radii)
-    table.insert(light_color, color)
-    num_lights = #light_position
+    table.insert(light_colors, color)
+    num_lights = #light_positions
     return num_lights
 end
 
 function M.get_light(id)
-    return light_position[id], light_radii[id], light_color[id]
+    return light_positions[id], light_radii[id], light_colors[id]
 end
 
-function M.set_light_position(id, position)
-    light_position[id] = position
+function M.set_light_positions(id, position)
+    light_positions[id] = position
 end
 
 function M.set_light_radii(id, radii)
     light_radii[id] = radii
 end
 
-function M.set_light_color(id, color)
-    light_color[id] = color
+function M.set_light_colors(id, color)
+    light_colors[id] = color
 end
 
 function M.get_num_lights()
@@ -51,7 +51,7 @@ function M.get_ambient_color()
 end
 
 function M.get_lights()
-    return light_position, light_radii, light_color
+    return light_positions, light_radii, light_colors
 end
 
 function M.get_sun_direction()
