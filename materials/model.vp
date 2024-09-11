@@ -10,16 +10,15 @@ uniform model_vp {
     mat4 mtx_normal;
 };
 
-out vec4 var_position;
+out vec3 var_frag_pos;
 out vec3 var_normal;
 out vec2 var_texcoord0;
 
 void main() {
     vec4 p = mtx_worldview * vec4(position.xyz, 1.0);
-    var_position = p;
+    var_frag_pos = p.xyz;
+    var_normal = normalize((mtx_normal * vec4(normal, 0.0)).xyz);
     var_texcoord0 = texcoord0;
-    // var_normal = normalize((mtx_normal * vec4(normal, 0.0)).xyz); // using world vertex space, so skip the multiplication
-    var_normal = normal;
     gl_Position = mtx_proj * p;
 }
 

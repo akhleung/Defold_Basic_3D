@@ -1,92 +1,11 @@
-local lighting_state = require "main.lighting_state"
+local render_state = require "render.render_state"
+local lighting_state = require "lighting.lighting_state"
 local update_constants
 --
 -- message constants
 --
-local MSG_CLEAR_COLOR =         hash("clear_color")
 local MSG_WINDOW_RESIZED =      hash("window_resized")
 local MSG_SET_VIEW_PROJ =       hash("set_view_projection")
-local MSG_SET_CAMERA_PROJ =     hash("use_camera_projection")
-local MSG_USE_STRETCH_PROJ =    hash("use_stretch_projection")
-local MSG_USE_FIXED_PROJ =      hash("use_fixed_projection")
-local MSG_USE_FIXED_FIT_PROJ =  hash("use_fixed_fit_projection")
-
-local DEFAULT_NEAR = -1
-local DEFAULT_FAR =   1
-local DEFAULT_ZOOM =  1
-
---
--- projection that centers content with maintained aspect ratio and optional zoom
---
-local function get_fixed_projection(camera, state)
-    camera.zoom = camera.zoom or DEFAULT_ZOOM
-    local projected_width = state.window_width / camera.zoom
-    local projected_height = state.window_height / camera.zoom
-    local left = -(projected_width - state.width) / 2
-    local bottom = -(projected_height - state.height) / 2
-    local right = left + projected_width
-    local top = bottom + projected_height
-    return vmath.matrix4_orthographic(left, right, bottom, top, camera.near, camera.far)
-end
---
--- projection that centers and fits content with maintained aspect ratio
---
-local function get_fixed_fit_projection(camera, state)
-    camera.zoom = math.min(state.window_width / state.width, state.window_height / state.height)
-    return get_fixed_projection(camera, state)
-end
---
--- projection that stretches content
---
-local function get_stretch_projection(camera, state)
-    return vmath.matrix4_orthographic(0, state.width, 0, state.height, camera.near, camera.far)
-end
---
--- projection for gui
---
-local function get_gui_projection(camera, state)
-    return vmath.matrix4_orthographic(0, state.window_width, 0, state.window_height, camera.near, camera.far)
-end
-
-local function update_clear_color(state, color)
-    if color then
-        state.clear_buffers[graphics.BUFFER_TYPE_COLOR0_BIT] = color
-    end
-end
-
-local function update_camera(camera, state)
-    camera.proj = camera.projection_fn(camera, state)
-    camera.frustum.frustum = camera.proj * camera.view
-end
-
-local function update_state(state)
-    state.window_width = render.get_window_width()
-    state.window_height = render.get_window_height()
-    state.valid = state.window_width > 0 and state.window_height > 0
-    if not state.valid then
-        return false
-    end
-    -- Make sure state updated only once when resize window
-    if state.window_width == state.prev_window_width and state.window_height == state.prev_window_height then
-        return true
-    end
-    state.prev_window_width = state.window_width
-    state.prev_window_height = state.window_height
-    state.width = render.get_width()
-    state.height = render.get_height()
-    for _, camera in pairs(state.cameras) do
-        update_camera(camera, state)
-    end
-    return true
-end
-
-local function init_camera(camera, projection_fn, near, far, zoom)
-    camera.view = vmath.matrix4()
-    camera.near = near == nil and DEFAULT_NEAR or near
-    camera.far = far == nil and DEFAULT_FAR or far
-    camera.zoom = zoom == nil and DEFAULT_ZOOM or zoom
-    camera.projection_fn = projection_fn
-end
 
 local function create_predicates(...)
     local arg = {...}
@@ -97,66 +16,86 @@ local function create_predicates(...)
     return predicates
 end
 
-local function create_camera(state, name, is_main_camera)
-    local camera = {}
-    camera.frustum = {}
-    state.cameras[name] = camera
-    if is_main_camera then
-        state.main_camera = camera
-    end
-    return camera
-end
+local i = vmath.matrix4()
+function init(self)
+    self.predicates = create_predicates("tile", "gui", "text", "particle", "model", "sprite", "transparent", "debug_text", "screen")
 
-local function create_state()
-    local state = {}
-    local color = vmath.vector4(0, 0, 0, 0)
-    color.x = sys.get_config_number("render.clear_color_red", 0)
-    color.y = sys.get_config_number("render.clear_color_green", 0)
-    color.z = sys.get_config_number("render.clear_color_blue", 0)
-    color.w = sys.get_config_number("render.clear_color_alpha", 0)
-    state.clear_buffers = {
-        [graphics.BUFFER_TYPE_COLOR0_BIT] = color,
+    self.clear_buffers = {
+        [graphics.BUFFER_TYPE_COLOR0_BIT] = vmath.vector4(
+            sys.get_config_number("render.clear_color_red", 0),
+            sys.get_config_number("render.clear_color_green", 0),
+            sys.get_config_number("render.clear_color_blue", 0),
+            sys.get_config_number("render.clear_color_alpha", 0)
+        ),
         [graphics.BUFFER_TYPE_DEPTH_BIT] = 1,
         [graphics.BUFFER_TYPE_STENCIL_BIT] = 0
     }
-    -- state.clear_buffers = {
-    --     [render.BUFFER_COLOR_BIT] = color,
-    --     [render.BUFFER_DEPTH_BIT] = 1,
-    --     [render.BUFFER_STENCIL_BIT] = 0
-    -- }
-    state.cameras = {}
-    return state
-end
 
-function init(self)
-    self.predicates = create_predicates("tile", "gui", "particle", "model", "debug_text")
+    self.camera = {
+        frustum = { frustum = vmath.matrix4() },
+        view = vmath.matrix4(),
+        proj = vmath.matrix4()
+    }
+    self.camera_gui = {
+        view = vmath.matrix4(),
+        proj = vmath.matrix4_orthographic(0, render.get_window_width(), 0, render.get_window_height(), -1, 1)
+    }
+    self.camera_gui.frustum = { frustum = self.camera_gui.proj * self.camera_gui.view }
+    self.valid = render.get_window_width() > 0 and render.get_window_height() > 0
 
-    -- default is stretch projection. copy from builtins and change for different projection
-    -- or send a message to the render script to change projection:
-    -- msg.post("@render:", "use_stretch_projection", { near = -1, far = 1 })
-    -- msg.post("@render:", "use_fixed_projection", { near = -1, far = 1, zoom = 2 })
-    -- msg.post("@render:", "use_fixed_fit_projection", { near = -1, far = 1 })
-
-    local state = create_state()
-    self.state = state
-    local camera_world = create_camera(state, "camera_world", true)
-    init_camera(camera_world, get_stretch_projection)
-    local camera_gui = create_camera(state, "camera_gui")
-    init_camera(camera_gui, get_gui_projection)
-    update_state(state)
+    lighting_state.set_ambient_color(vmath.vector4(0.1, 0.1, 0.1, 1.0))
+    lighting_state.set_sun_color(vmath.vector4(.1, .1, .1, 1.0))
+    lighting_state.set_sun_direction(vmath.normalize(vmath.vector4(1, -1, -1, 1)))
 
     self.constants = render.constant_buffer()
     update_constants(self.constants)
+
+    render_state.WIDTH = render.get_window_width()
+    render_state.HEIGHT = render.get_window_height()
+
+    -- Creating the RT in a render script:
+    local color_params = {
+        format = graphics.TEXTURE_FORMAT_RGBA,
+        width  = render.get_window_width(),
+        height = render.get_window_height(),
+        flags  = render.TEXTURE_BIT ---@diagnostic disable-line: undefined-field
+    }
+    local position_params = {
+        format = graphics.TEXTURE_FORMAT_RGBA32F,
+        width  = render.get_window_width(),
+        height = render.get_window_height(),
+        flags  = render.TEXTURE_BIT ---@diagnostic disable-line: undefined-field
+    }
+    local depth_params = {
+        format = graphics.TEXTURE_FORMAT_DEPTH,
+        width  = render.get_window_width(),
+        height = render.get_window_height(),
+        flags  = render.TEXTURE_BIT ---@diagnostic disable-line: undefined-field
+    }
+
+    self.render_target = render.render_target(
+        "render_target",
+        {
+            [graphics.BUFFER_TYPE_COLOR0_BIT] = color_params, -- color
+            [graphics.BUFFER_TYPE_COLOR1_BIT] = color_params, -- normals
+            [graphics.BUFFER_TYPE_COLOR2_BIT] = position_params, -- positions
+            [graphics.BUFFER_TYPE_DEPTH_BIT]  = depth_params, -- depth
+        }
+    )
+    self.ssao_target = render.render_target(
+        "ssao_target",
+        {
+            [graphics.BUFFER_TYPE_COLOR0_BIT] = color_params, -- color
+            [graphics.BUFFER_TYPE_DEPTH_BIT]  = depth_params, -- depth
+        }
+    )
 end
 
+local screen_proj = vmath.matrix4_orthographic(-.5, .5, -.5, .5, -1, 1)
 local render_options = {}
+local ssao_options = {}
 function update(self)
-    local state = self.state
-    if not state.valid then
-        if not update_state(state) then
-            return
-        end
-    end
+    if not self.valid then return end
 
     update_constants(self.constants)
 
@@ -166,77 +105,86 @@ function update(self)
     -- turn on depth_mask before `render.clear()` to clear it as well
     render.set_depth_mask(true)
     render.set_stencil_mask(0xff)
-    render.clear(state.clear_buffers)
+    render.clear(self.clear_buffers)
 
     -- setup camera view and projection
     --
-    local camera_world = state.cameras.camera_world
-    render.set_viewport(0, 0, state.window_width, state.window_height)
-    render.set_view(camera_world.view)
-    render.set_projection(camera_world.proj)
+    local camera = self.camera
+    render.set_viewport(0, 0, render.get_window_width(), render.get_window_height())
+    render.set_view(camera.view)
+    render.set_projection(camera.proj)
 
     -- set states used for all the world predicates
-    render.set_blend_func(graphics.BLEND_FACTOR_SRC_ALPHA, graphics.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA)
+    -- render.set_blend_func(graphics.BLEND_FACTOR_SRC_ALPHA, graphics.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA)
     render.enable_state(graphics.STATE_DEPTH_TEST)
 
     -- render `model` predicate for default 3D material
-    --
-    render.enable_state(graphics.STATE_CULL_FACE)
+    -- self.constants.mtx_proj_inv = self.proj_inv or i -- TODO: improve this
+    render_options.frustum = camera.frustum.frustum
     render_options.constants = self.constants
-    render_options.frustum = camera_world.frustum.frustum
+    render.enable_state(graphics.STATE_CULL_FACE)
     render.draw(predicates.model, render_options)
-    render.set_depth_mask(false)
     render.disable_state(graphics.STATE_CULL_FACE)
+    render.draw(predicates.sprite, render_options)
+    render.enable_state(graphics.STATE_CULL_FACE)
+    render.draw_debug3d()
+
+    -- disable the depth mask and face culling for things with transparency
+    render.set_depth_mask(false)
+    -- render.disable_state(render.STATE_CULL_FACE)
+    render.set_blend_func(graphics.BLEND_FACTOR_SRC_ALPHA, graphics.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA)
+    render.enable_state(graphics.STATE_BLEND)
+    render.draw(predicates.transparent, render_options)
 
     -- render the other components: sprites, tilemaps, particles etc
     --
-    render.enable_state(graphics.STATE_BLEND)
-    render.draw(predicates.tile, camera_world.frustum)
-    render.draw(predicates.particle, camera_world.frustum)
+    render.draw(predicates.tile, render_options)
+    render.draw(predicates.particle, render_options)
     render.disable_state(graphics.STATE_DEPTH_TEST)
+    render.disable_state(graphics.STATE_CULL_FACE) -- need to disable this to get the debug_text and profiler to show
 
-    render.draw_debug3d()
+    render.disable_state(graphics.STATE_STENCIL_TEST)
+    render.disable_state(graphics.STATE_BLEND)
 
     -- render GUI
     --
-    local camera_gui = state.cameras.camera_gui
+    local camera_gui = self.camera_gui
+    render_options.frustum = camera_gui.frustum.frustum
     render.set_view(camera_gui.view)
     render.set_projection(camera_gui.proj)
-
     render.enable_state(graphics.STATE_STENCIL_TEST)
-    render.draw(predicates.gui, camera_gui.frustum)
-    render.draw(predicates.debug_text, camera_gui.frustum)
+    render.draw(predicates.debug_text, render_options)
+    render.draw(predicates.gui, render_options)
+    render.draw(predicates.text, render_options)
     render.disable_state(graphics.STATE_STENCIL_TEST)
     render.disable_state(graphics.STATE_BLEND)
 end
 
 function on_message(self, message_id, message)
-    local state = self.state
-    local camera = state.main_camera
-    if message_id == MSG_CLEAR_COLOR then
-        update_clear_color(state, message.color)
-    elseif message_id == MSG_WINDOW_RESIZED then
-        update_state(state)
+    local camera = self.camera
+    local camera_gui = self.camera_gui
+    if message_id == MSG_WINDOW_RESIZED then
+        camera.frustum.frustum = camera.proj * camera.view
+        camera_gui.proj = vmath.matrix4_orthographic(0, render.get_window_width(), 0, render.get_window_height(), -1, 1)
+        self.valid = render.get_window_width() > 0 and render.get_window_height() > 0
+        render_state.WIDTH = render.get_window_width()
+        render_state.HEIGHT = render.get_window_height()
     elseif message_id == MSG_SET_VIEW_PROJ then
         camera.view = message.view
-        self.camera_projection = message.projection or vmath.matrix4()
-        update_camera(camera, state)
-    elseif message_id == MSG_SET_CAMERA_PROJ then
-        camera.projection_fn = function() return self.camera_projection end
-    elseif message_id == MSG_USE_STRETCH_PROJ then
-        init_camera(camera, get_stretch_projection, message.near, message.far)
-        update_camera(camera, state)
-    elseif message_id == MSG_USE_FIXED_PROJ then
-        init_camera(camera, get_fixed_projection, message.near, message.far, message.zoom)
-        update_camera(camera, state)
-    elseif message_id == MSG_USE_FIXED_FIT_PROJ then
-        init_camera(camera, get_fixed_fit_projection, message.near, message.far)
-        update_camera(camera, state)
+        camera.proj = message.projection or i
+        camera.frustum.frustum = camera.proj * camera.view
+        render_state.MTX_VIEW = camera.view
+        self.proj_inv = vmath.inv(camera.proj)
     end
 end
 
 local num_lights = vmath.vector4()
 update_constants = function(constants)
+
+    constants.ambient_color = lighting_state.get_ambient_color()
+
+    constants.sun_color = lighting_state.get_sun_color()
+    constants.sun_direction = lighting_state.get_sun_direction()
 
     local n = lighting_state.get_num_lights()
     num_lights.x, num_lights.y, num_lights.z, num_lights.w = n, n, n, n

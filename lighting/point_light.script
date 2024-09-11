@@ -1,4 +1,4 @@
-local lighting = require "main.lighting_state"
+local lighting = require "lighting.lighting_state"
 
 go.property("radii", vmath.vector4())
 go.property("color", vmath.vector4())
@@ -7,7 +7,6 @@ function init(self)
 	local p3 = go.get_world_position()
 	local p4 = vmath.vector4(p3.x, p3.y, p3.z, 1.0)
 	self.id = lighting.add_light(p4, self.radii, self.color)
-	print("ADDING POINT LIGHT AT" .. p4)
 end
 
 function update(self, dt)

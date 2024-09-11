@@ -1,28 +1,21 @@
 name: "main"
+instances {
+  id: "logo1"
+  prototype: "/assets/logo/logo.go"
+  position {
+    x: -2.0
+  }
+}
 scale_along_z: 1
 embedded_instances {
   id: "main"
   data: "components {\n"
-  "  id: \"cube\"\n"
-  "  component: \"/assets/models/cube.model\"\n"
-  "}\n"
-  "components {\n"
   "  id: \"main\"\n"
   "  component: \"/main/main.script\"\n"
   "}\n"
   "components {\n"
-  "  id: \"quad\"\n"
-  "  component: \"/assets/models/quad.model\"\n"
-  "  position {\n"
-  "    x: 3.0\n"
-  "  }\n"
-  "}\n"
-  "components {\n"
-  "  id: \"sphere\"\n"
-  "  component: \"/assets/models/sphere.model\"\n"
-  "  position {\n"
-  "    x: 1.5\n"
-  "  }\n"
+  "  id: \"framerate\"\n"
+  "  component: \"/main/framerate.script\"\n"
   "}\n"
   ""
   position {
@@ -44,11 +37,11 @@ embedded_instances {
   ""
   position {
     y: 3.0
-    z: 10.0
+    z: 8.0
   }
   rotation {
-    x: -0.16093205
-    w: 0.9869655
+    x: -0.20858976
+    w: 0.9780032
   }
 }
 embedded_instances {
@@ -196,15 +189,18 @@ embedded_instances {
   "  }\n"
   "}\n"
   ""
+  position {
+    x: 2.0
+  }
 }
 embedded_instances {
   id: "point_light_green"
   data: "components {\n"
   "  id: \"point_light\"\n"
-  "  component: \"/main/point_light.script\"\n"
+  "  component: \"/lighting/point_light.script\"\n"
   "  properties {\n"
   "    id: \"radii\"\n"
-  "    value: \"6.0, 15.0, 0.0, 0.0\"\n"
+  "    value: \"0.0, 1.0, 0.0, 0.0\"\n"
   "    type: PROPERTY_TYPE_VECTOR4\n"
   "  }\n"
   "  properties {\n"
@@ -215,27 +211,29 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: -7.0
+    x: -8.0
   }
 }
 embedded_instances {
   id: "point_light_red"
   data: "components {\n"
   "  id: \"point_light\"\n"
-  "  component: \"/main/point_light.script\"\n"
+  "  component: \"/lighting/point_light.script\"\n"
   "  properties {\n"
   "    id: \"radii\"\n"
-  "    value: \"5.0, 50.0, 0.0, 0.0\"\n"
+  "    value: \"5.0, 15.0, 0.0, 0.0\"\n"
   "    type: PROPERTY_TYPE_VECTOR4\n"
   "  }\n"
   "  properties {\n"
   "    id: \"color\"\n"
-  "    value: \"1.0, 0.0, 0.0, 1.0\"\n"
+  "    value: \"1.0, 1.0, 1.0, 1.0\"\n"
   "    type: PROPERTY_TYPE_VECTOR4\n"
   "  }\n"
   "}\n"
   ""
   position {
-    x: 9.0
+    x: 8.0
+    y: 2.0
+    z: 4.0
   }
 }

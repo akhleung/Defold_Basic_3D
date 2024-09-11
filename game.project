@@ -6,8 +6,8 @@ render = /render/default.renderc
 shared_state = 1
 
 [display]
-width = 960
-height = 640
+width = 1600
+height = 900
 
 [android]
 input_method = HiddenInputField
