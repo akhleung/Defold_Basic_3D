@@ -18,7 +18,7 @@ end
 
 local i = vmath.matrix4()
 function init(self)
-    self.predicates = create_predicates("tile", "gui", "text", "particle", "model", "sprite", "transparent", "debug_text", "screen")
+    self.predicates = create_predicates("tile", "gui", "text", "particle", "model", "ice", "sprite", "transparent", "debug_text", "screen")
 
     self.clear_buffers = {
         [graphics.BUFFER_TYPE_COLOR0_BIT] = vmath.vector4(
@@ -124,6 +124,7 @@ function update(self)
     render_options.constants = self.constants
     render.enable_state(graphics.STATE_CULL_FACE)
     render.draw(predicates.model, render_options)
+    render.draw(predicates.ice, render_options)
     render.disable_state(graphics.STATE_CULL_FACE)
     render.draw(predicates.sprite, render_options)
     render.enable_state(graphics.STATE_CULL_FACE)

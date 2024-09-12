@@ -89,6 +89,7 @@ void main() {
 
     vec4 mat_diff = texture(diffuse_map, var_texcoord0);
     vec3 normal = get_perturb_normal(var_texcoord0, tbn);
+    // vec3 normal = var_normal;
 
     // implement ambient light as directional, always shining directly on the face (i.e., into the interpolated normal)
     vec4 color = diffuse(var_normal, normal) * ambient_color * mat_diff;

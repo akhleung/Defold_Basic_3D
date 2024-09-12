@@ -1,5 +1,5 @@
-name: "model"
-tags: "model"
+name: "ice"
+tags: "ice"
 vertex_program: "/materials/model.vp"
 fragment_program: "/materials/model.fp"
 vertex_constants {
@@ -34,10 +34,10 @@ fragment_constants {
   name: "shininess"
   type: CONSTANT_TYPE_USER
   value {
-    x: 0.2
-    y: 0.2
-    z: 0.2
-    w: 32.0
+    x: 0.5
+    y: 0.5
+    z: 0.5
+    w: 64.0
   }
 }
 fragment_constants {

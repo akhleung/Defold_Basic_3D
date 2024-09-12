@@ -3,10 +3,10 @@ function init(self)
 	msg.post("@render:", "use_camera_projection")
 	msg.post("camera", "acquire_camera_focus")
 
-	go.animate("/logo", "euler.y", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 16)
-	go.animate("/logo", "euler.z", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 16)
-	go.animate("/logo1", "euler.y", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 16)
-	go.animate("/logo1", "euler.z", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 16)
+	-- go.animate("/logo", "euler.y", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 16)
+	-- go.animate("/logo", "euler.z", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 16)
+	-- go.animate("/logo1", "euler.y", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 16)
+	-- go.animate("/logo1", "euler.z", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 16)
 
 	msg.post("/point_light_green#point_light", "disable")
 	msg.post("/point_light_red#point_light", "disable")
@@ -28,7 +28,6 @@ function on_input(self, action_id, action)
 	end
 
 	if action_id == hash("key_p") and pressed then
-		print("TOGGLE PROFILING")
 		profiling = not profiling
 		profiler.enable_ui(profiling)
 		return

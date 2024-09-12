@@ -8,6 +8,7 @@ shared_state = 1
 [display]
 width = 1600
 height = 900
+vsync = 0
 
 [android]
 input_method = HiddenInputField
@@ -28,4 +29,7 @@ bundle_identifier = com.defold.example.basic3d
 
 [input]
 game_binding = /input/all.input_bindingc
+
+[model]
+max_count = 256
 

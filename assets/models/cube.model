@@ -2,7 +2,7 @@ mesh: "/assets/models/block.dae"
 name: "unnamed"
 materials {
   name: "default"
-  material: "/materials/model.material"
+  material: "/materials/ice.material"
   textures {
     sampler: "diffuse_map"
     texture: "/assets/images/broken-ice-base.png"
