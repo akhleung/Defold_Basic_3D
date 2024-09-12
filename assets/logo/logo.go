@@ -140,3 +140,7 @@ components {
     z: 1.0
   }
 }
+components {
+  id: "rotate"
+  component: "/main/rotate.script"
+}

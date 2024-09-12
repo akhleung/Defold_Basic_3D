@@ -1,1 +1,9 @@
 script: "/render/default.render_script"
+render_resources {
+  name: "screen_material"
+  path: "/materials/screen.material"
+}
+render_resources {
+  name: "ssao_material"
+  path: "/materials/ssao.material"
+}

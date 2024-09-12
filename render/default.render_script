@@ -44,7 +44,7 @@ function init(self)
     self.valid = render.get_window_width() > 0 and render.get_window_height() > 0
 
     lighting_state.set_ambient_color(vmath.vector4(0.1, 0.1, 0.1, 1.0))
-    lighting_state.set_sun_color(vmath.vector4(.1, .1, .1, 1.0))
+    lighting_state.set_sun_color(vmath.vector4(.7, .7, .7, 1.0))
     lighting_state.set_sun_direction(vmath.normalize(vmath.vector4(1, -1, -1, 1)))
 
     self.constants = render.constant_buffer()
@@ -100,6 +100,8 @@ function update(self)
     update_constants(self.constants)
 
     local predicates = self.predicates
+
+    render.set_render_target(self.render_target,  { transient = { graphics.BUFFER_TYPE_DEPTH_BIT } })
     -- clear screen buffers
     --
     -- turn on depth_mask before `render.clear()` to clear it as well
@@ -146,6 +148,16 @@ function update(self)
 
     render.disable_state(graphics.STATE_STENCIL_TEST)
     render.disable_state(graphics.STATE_BLEND)
+
+    render.set_render_target(render.RENDER_TARGET_DEFAULT)
+    render.clear(self.clear_buffers)
+    render.set_view(i)
+    render.set_projection(screen_proj)
+    render.enable_material("screen_material")
+    render.enable_texture("render_sampler", self.render_target, graphics.BUFFER_TYPE_COLOR0_BIT)
+    render.draw(predicates.screen)
+    render.disable_texture("render_sampler")
+    render.disable_material()
 
     -- render GUI
     --
