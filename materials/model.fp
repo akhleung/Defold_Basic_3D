@@ -46,5 +46,7 @@ void main() {
 
     color.a = mat_diff.a;
 
-    gl_FragColor = clamp(color, 0.0, 1.0);
+    gl_FragData[0] = clamp(color, 0.0, 1.0);
+    gl_FragData[1] = vec4(var_normal, 1.0);
+    gl_FragData[2] = var_position;
 }

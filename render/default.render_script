@@ -129,7 +129,7 @@ local function create_state()
 end
 
 function init(self)
-    self.predicates = create_predicates("tile", "gui", "particle", "model", "debug_text")
+    self.predicates = create_predicates("tile", "gui", "particle", "model", "debug_text", "screen")
 
     -- default is stretch projection. copy from builtins and change for different projection
     -- or send a message to the render script to change projection:
@@ -147,9 +147,49 @@ function init(self)
 
     self.constants = render.constant_buffer()
     update_constants(self.constants)
+
+    -- Creating the RT in a render script:
+    local color_params = {
+        format = render.FORMAT_RGBA,
+        width  = render.get_window_width(),
+        height = render.get_window_height(),
+        -- flags  = render.TEXTURE_BIT -- this will create the buffer as a texture
+    }
+    local position_params = {
+        format = render.FORMAT_RGBA32F,
+        width  = render.get_window_width(),
+        height = render.get_window_height(),
+        -- flags  = render.TEXTURE_BIT -- this will create the buffer as a texture
+    }
+    local depth_params = {
+        format = render.FORMAT_DEPTH,
+        width  = render.get_window_width(),
+        height = render.get_window_height(),
+        flags  = render.TEXTURE_BIT -- this will create the buffer as a texture
+    }
+
+    self.render_target = render.render_target(
+        "render_target",
+        {
+            [render.BUFFER_COLOR0_BIT] = color_params, -- color
+            [render.BUFFER_COLOR1_BIT] = color_params, -- normals
+            [render.BUFFER_COLOR2_BIT] = position_params, -- positions
+            [render.BUFFER_DEPTH_BIT]  = depth_params, -- depth
+        }
+    )
+    self.ssao_target = render.render_target(
+        "ssao_target",
+        {
+            [render.BUFFER_COLOR0_BIT] = color_params, -- color
+            [render.BUFFER_DEPTH_BIT]  = depth_params, -- depth
+        }
+    )
 end
 
+local i = vmath.matrix4()
+local screen_proj = vmath.matrix4_orthographic(-.5, .5, -.5, .5, -1, 1)
 local render_options = {}
+local ssao_options = {}
 function update(self)
     local state = self.state
     if not state.valid then
@@ -161,6 +201,8 @@ function update(self)
     update_constants(self.constants)
 
     local predicates = self.predicates
+
+    render.set_render_target(self.render_target)
     -- clear screen buffers
     --
     -- turn on depth_mask before `render.clear()` to clear it as well
@@ -196,6 +238,18 @@ function update(self)
     render.disable_state(render.STATE_DEPTH_TEST)
 
     render.draw_debug3d()
+
+    render.set_render_target(render.RENDER_TARGET_DEFAULT)
+    render.clear(state.clear_buffers)
+    render.set_view(i)
+    render.set_projection(screen_proj)
+    render.enable_material("screen_material")
+    -- render.enable_texture("render_sampler", self.render_target, render.BUFFER_COLOR0_BIT)
+    render.enable_texture("render_sampler", self.render_target, render.BUFFER_COLOR1_BIT)
+    -- render.enable_texture("render_sampler", self.render_target, render.BUFFER_DEPTH_BIT)
+    render.draw(predicates.screen)
+    render.disable_texture("render_sampler")
+    render.disable_material()
 
     -- render GUI
     --
