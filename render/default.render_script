@@ -66,6 +66,12 @@ function init(self)
         height = render.get_window_height(),
         flags  = render.TEXTURE_BIT ---@diagnostic disable-line: undefined-field
     }
+    local normal_params = {
+        format = graphics.TEXTURE_FORMAT_RGBA16F,
+        width = render.get_window_width(),
+        height = render.get_window_height(),
+        flags = render.TEXTURE_BIT ---@diagnostic disable-line: undefined-field
+    }
     local depth_params = {
         format = graphics.TEXTURE_FORMAT_DEPTH,
         width  = render.get_window_width(),
@@ -77,7 +83,7 @@ function init(self)
         "render_target",
         {
             [graphics.BUFFER_TYPE_COLOR0_BIT] = color_params, -- color
-            [graphics.BUFFER_TYPE_COLOR1_BIT] = color_params, -- normals
+            [graphics.BUFFER_TYPE_COLOR1_BIT] = normal_params, -- normals
             [graphics.BUFFER_TYPE_COLOR2_BIT] = position_params, -- positions
             [graphics.BUFFER_TYPE_DEPTH_BIT]  = depth_params, -- depth
         }
@@ -101,7 +107,7 @@ function update(self)
 
     local predicates = self.predicates
 
-    render.set_render_target(self.render_target,  { transient = { graphics.BUFFER_TYPE_DEPTH_BIT } })
+    render.set_render_target(self.render_target)
     -- clear screen buffers
     --
     -- turn on depth_mask before `render.clear()` to clear it as well
@@ -149,12 +155,29 @@ function update(self)
     render.disable_state(graphics.STATE_STENCIL_TEST)
     render.disable_state(graphics.STATE_BLEND)
 
-    render.set_render_target(render.RENDER_TARGET_DEFAULT)
+    render.set_render_target(self.ssao_target, { transient = { graphics.BUFFER_TYPE_DEPTH_BIT } })
     render.clear(self.clear_buffers)
     render.set_view(i)
     render.set_projection(screen_proj)
+
+    render.enable_material("ssao_material")
+    render.enable_texture("color_sampler", self.render_target, graphics.BUFFER_TYPE_COLOR0_BIT)
+    render.enable_texture("position_sampler", self.render_target, graphics.BUFFER_TYPE_COLOR1_BIT)
+    render.enable_texture("normal_sampler", self.render_target, graphics.BUFFER_TYPE_COLOR2_BIT)
+    ssao_options.constants = self.constants
+    ssao_options.constants.mtx_proj = camera.proj
+    render.draw(predicates.screen, ssao_options)
+    render.disable_texture("color_sampler")
+    render.disable_texture("position_sampler")
+    render.disable_texture("normal_sampler")
+    render.disable_material()
+
+    render.set_render_target(render.RENDER_TARGET_DEFAULT)
+    -- render.clear(self.clear_buffers)
+    -- render.set_view(i)
+    -- render.set_projection(screen_proj)
     render.enable_material("screen_material")
-    render.enable_texture("render_sampler", self.render_target, graphics.BUFFER_TYPE_COLOR0_BIT)
+    render.enable_texture("render_sampler", self.ssao_target, graphics.BUFFER_TYPE_COLOR0_BIT)
     render.draw(predicates.screen)
     render.disable_texture("render_sampler")
     render.disable_material()
@@ -192,6 +215,7 @@ function on_message(self, message_id, message)
 end
 
 local num_lights = vmath.vector4()
+local resolution = vmath.vector4()
 update_constants = function(constants)
 
     constants.ambient_color = lighting_state.get_ambient_color()
@@ -207,4 +231,11 @@ update_constants = function(constants)
     constants.light_positions = light_positions
     constants.light_radii = light_radii
     constants.light_colors = light_colors
+
+    constants.kernel = render_state.KERNEL
+    constants.noise = render_state.NOISE
+
+    resolution.x = render.get_window_width()
+    resolution.y = render.get_window_height()
+    constants.resolution = resolution
 end

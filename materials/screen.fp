@@ -1,4 +1,5 @@
 #version 420
+
 in vec2 var_texcoord0;
 
 uniform sampler2D render_sampler;

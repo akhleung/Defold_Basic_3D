@@ -1,13 +1,14 @@
-#version 140
+#version 420
 
 uniform ssao_vp {
-	mediump mat4 mtx_viewproj;
+	mat4 mtx_viewproj;
 };
-// positions are in world space
-in mediump vec4 position;
-in mediump vec2 texcoord0;
 
-out mediump vec2 var_texcoord0;
+// positions are in world space
+in vec4 position;
+in vec2 texcoord0;
+
+out vec2 var_texcoord0;
 
 void main() {
 	gl_Position = mtx_viewproj * vec4(position.xyz, 1.0);

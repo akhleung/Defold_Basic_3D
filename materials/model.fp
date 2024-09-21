@@ -26,8 +26,8 @@ uniform model_fp {
 };
 
 layout(location = 0) out vec4 color_out;
-layout(location = 1) out vec4 normal_out;
-layout(location = 2) out vec4 position_out;
+layout(location = 1) out vec4 position_out;
+layout(location = 2) out vec4 normal_out;
 
 mat3 get_tbn_mtx() {
     vec3 d_vd_x = dFdx(var_frag_pos);
@@ -89,7 +89,6 @@ void main() {
 
     vec4 mat_diff = texture(diffuse_map, var_texcoord0);
     vec3 normal = get_perturb_normal(var_texcoord0, tbn);
-    // vec3 normal = var_normal;
 
     // implement ambient light as directional, always shining directly on the face (i.e., into the interpolated normal)
     vec4 color = diffuse(var_normal, normal) * ambient_color * mat_diff;
@@ -112,6 +111,6 @@ void main() {
     color.a = mat_diff.a;
 
     color_out = clamp(color, 0.0, 1.0);
-    normal_out = vec4(normal, 1.0);
     position_out = vec4(var_frag_pos, 1.0);
+    normal_out = vec4(normal, 1.0);
 }
