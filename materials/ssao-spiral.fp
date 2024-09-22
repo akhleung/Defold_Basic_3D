@@ -34,8 +34,11 @@ float doAmbientOcclusion(in vec3 op, in vec3 p, in vec3 cnorm) {
     vec3 diff = op - p;
     float l = length(diff);
     float d = l * SCALE;
-    float ao = max(0.0, dot(cnorm, normalize(diff)) - BIAS) * (1.0 / (1.0 + d));
-    ao *= 1.0 - smoothstep(MAX_DISTANCE * 0.0, MAX_DISTANCE * 1.5, l);
+    float f = dot(cnorm, normalize(diff));
+    f = smoothstep(0.15, 1.0, f); // discard occluders that are off to the side, to prevent self-occlusion artifacts
+    float ao = max(0.0, f - BIAS) * (1.0 / (1.0 + d));
+    // float ao = max(0.0, dot(cnorm, normalize(diff)) - BIAS) * (1.0 / (1.0 + d));
+    ao *= 1.0 - smoothstep(MAX_DISTANCE * 0.0, MAX_DISTANCE * 5.0, l); // increasing the upper bound seems to allow ao to persist at very oblique angles
     return ao;
 }
 
