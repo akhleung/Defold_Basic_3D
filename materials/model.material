@@ -62,16 +62,15 @@ fragment_constants {
 }
 samplers {
   name: "diffuse_map"
-  wrap_u: WRAP_MODE_CLAMP_TO_EDGE
-  wrap_v: WRAP_MODE_CLAMP_TO_EDGE
+  wrap_u: WRAP_MODE_REPEAT
+  wrap_v: WRAP_MODE_REPEAT
   filter_min: FILTER_MODE_MIN_NEAREST
   filter_mag: FILTER_MODE_MAG_NEAREST
 }
 samplers {
   name: "normal_map"
-  wrap_u: WRAP_MODE_CLAMP_TO_EDGE
-  wrap_v: WRAP_MODE_CLAMP_TO_EDGE
+  wrap_u: WRAP_MODE_REPEAT
+  wrap_v: WRAP_MODE_REPEAT
   filter_min: FILTER_MODE_MIN_NEAREST
   filter_mag: FILTER_MODE_MAG_NEAREST
-  max_anisotropy: 0.0
 }

@@ -1,0 +1,3 @@
+function init(self)
+	go.animate("/camera", "euler.y", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 30)
+end

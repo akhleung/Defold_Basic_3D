@@ -4,14 +4,14 @@ instances {
   prototype: "/assets/logo/logo.go"
   position {
     x: -2.0
+    z: 4.0
   }
 }
 instances {
   id: "logo4"
   prototype: "/assets/logo/logo.go"
   position {
-    x: 3.0
-    z: -4.0
+    x: 5.0
   }
 }
 instances {
@@ -19,7 +19,7 @@ instances {
   prototype: "/assets/logo/logo.go"
   position {
     x: -2.0
-    z: -8.0
+    z: -4.0
   }
 }
 scale_along_z: 1
@@ -36,29 +36,17 @@ embedded_instances {
   ""
   position {
     x: 5.0
+    z: 3.0
   }
 }
 embedded_instances {
   id: "camera"
-  data: "embedded_components {\n"
-  "  id: \"camera\"\n"
-  "  type: \"camera\"\n"
-  "  data: \"aspect_ratio: 1.0\\n"
-  "fov: 0.7854\\n"
-  "near_z: 0.1\\n"
-  "far_z: 25.0\\n"
-  "auto_aspect_ratio: 1\\n"
-  "\"\n"
+  children: "offset"
+  data: "components {\n"
+  "  id: \"revolve\"\n"
+  "  component: \"/main/revolve.script\"\n"
   "}\n"
   ""
-  position {
-    y: 3.0
-    z: 8.0
-  }
-  rotation {
-    x: -0.20858976
-    w: 0.9780032
-  }
 }
 embedded_instances {
   id: "logo"
@@ -211,6 +199,7 @@ embedded_instances {
   ""
   position {
     x: 2.0
+    z: 4.0
   }
 }
 embedded_instances {
@@ -232,6 +221,7 @@ embedded_instances {
   ""
   position {
     x: -8.0
+    z: 3.0
   }
 }
 embedded_instances {
@@ -254,7 +244,7 @@ embedded_instances {
   position {
     x: 8.0
     y: 2.0
-    z: 4.0
+    z: 7.0
   }
 }
 embedded_instances {
@@ -407,8 +397,7 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: -3.0
-    z: -4.0
+    x: -5.0
   }
 }
 embedded_instances {
@@ -562,7 +551,7 @@ embedded_instances {
   ""
   position {
     x: 2.0
-    z: -8.0
+    z: -4.0
   }
 }
 embedded_instances {
@@ -583,4 +572,1470 @@ embedded_instances {
   "\"\n"
   "}\n"
   ""
+}
+embedded_instances {
+  id: "offset"
+  data: "embedded_components {\n"
+  "  id: \"camera\"\n"
+  "  type: \"camera\"\n"
+  "  data: \"aspect_ratio: 1.0\\n"
+  "fov: 0.7854\\n"
+  "near_z: 0.1\\n"
+  "far_z: 25.0\\n"
+  "auto_aspect_ratio: 1\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    y: 3.0
+    z: 11.0
+  }
+  rotation {
+    x: -0.21643962
+    w: 0.976296
+  }
+}
+embedded_instances {
+  id: "the_floor"
+  children: "floor"
+  children: "floor1"
+  children: "floor10"
+  children: "floor11"
+  children: "floor12"
+  children: "floor13"
+  children: "floor14"
+  children: "floor15"
+  children: "floor16"
+  children: "floor17"
+  children: "floor18"
+  children: "floor19"
+  children: "floor2"
+  children: "floor20"
+  children: "floor21"
+  children: "floor22"
+  children: "floor23"
+  children: "floor24"
+  children: "floor25"
+  children: "floor26"
+  children: "floor27"
+  children: "floor28"
+  children: "floor29"
+  children: "floor3"
+  children: "floor30"
+  children: "floor31"
+  children: "floor32"
+  children: "floor33"
+  children: "floor34"
+  children: "floor35"
+  children: "floor36"
+  children: "floor37"
+  children: "floor38"
+  children: "floor39"
+  children: "floor4"
+  children: "floor40"
+  children: "floor41"
+  children: "floor42"
+  children: "floor43"
+  children: "floor44"
+  children: "floor45"
+  children: "floor46"
+  children: "floor47"
+  children: "floor48"
+  children: "floor49"
+  children: "floor5"
+  children: "floor50"
+  children: "floor51"
+  children: "floor52"
+  children: "floor53"
+  children: "floor54"
+  children: "floor55"
+  children: "floor56"
+  children: "floor57"
+  children: "floor58"
+  children: "floor59"
+  children: "floor6"
+  children: "floor60"
+  children: "floor61"
+  children: "floor62"
+  children: "floor63"
+  children: "floor64"
+  children: "floor65"
+  children: "floor66"
+  children: "floor67"
+  children: "floor68"
+  children: "floor69"
+  children: "floor7"
+  children: "floor70"
+  children: "floor71"
+  children: "floor72"
+  children: "floor73"
+  children: "floor74"
+  children: "floor75"
+  children: "floor76"
+  children: "floor77"
+  children: "floor78"
+  children: "floor79"
+  children: "floor8"
+  children: "floor80"
+  children: "floor9"
+  data: ""
+}
+embedded_instances {
+  id: "floor52"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -20.0
+    y: -2.0
+    z: 30.0
+  }
+}
+embedded_instances {
+  id: "floor2"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 20.0
+    y: -2.0
+  }
+}
+embedded_instances {
+  id: "floor25"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -20.0
+    y: -2.0
+  }
+}
+embedded_instances {
+  id: "floor24"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -10.0
+    y: -2.0
+    z: 10.0
+  }
+}
+embedded_instances {
+  id: "floor22"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -30.0
+    y: -2.0
+    z: 20.0
+  }
+}
+embedded_instances {
+  id: "floor15"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 20.0
+    y: -2.0
+    z: -20.0
+  }
+}
+embedded_instances {
+  id: "floor41"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 30.0
+    y: -2.0
+    z: -20.0
+  }
+}
+embedded_instances {
+  id: "floor18"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -10.0
+    y: -2.0
+  }
+}
+embedded_instances {
+  id: "floor17"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    y: -2.0
+    z: -30.0
+  }
+}
+embedded_instances {
+  id: "floor16"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 10.0
+    y: -2.0
+    z: -30.0
+  }
+}
+embedded_instances {
+  id: "floor76"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 10.0
+    y: -2.0
+    z: -40.0
+  }
+}
+embedded_instances {
+  id: "floor71"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -40.0
+    y: -2.0
+    z: 40.0
+  }
+}
+embedded_instances {
+  id: "floor28"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -10.0
+    y: -2.0
+    z: -10.0
+  }
+}
+embedded_instances {
+  id: "floor8"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 20.0
+    y: -2.0
+    z: 20.0
+  }
+}
+embedded_instances {
+  id: "floor3"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    y: -2.0
+    z: 10.0
+  }
+}
+embedded_instances {
+  id: "floor45"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -40.0
+    y: -2.0
+    z: -30.0
+  }
+}
+embedded_instances {
+  id: "floor11"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    y: -2.0
+    z: -20.0
+  }
+}
+embedded_instances {
+  id: "floor23"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -20.0
+    y: -2.0
+    z: 10.0
+  }
+}
+embedded_instances {
+  id: "floor46"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -40.0
+    y: -2.0
+    z: -10.0
+  }
+}
+embedded_instances {
+  id: "floor61"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 40.0
+    y: -2.0
+    z: -20.0
+  }
+}
+embedded_instances {
+  id: "floor66"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -30.0
+    y: -2.0
+    z: 40.0
+  }
+}
+embedded_instances {
+  id: "floor70"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -10.0
+    y: -2.0
+    z: 40.0
+  }
+}
+embedded_instances {
+  id: "floor7"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 10.0
+    y: -2.0
+    z: 20.0
+  }
+}
+embedded_instances {
+  id: "floor63"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -20.0
+    y: -2.0
+    z: 40.0
+  }
+}
+embedded_instances {
+  id: "floor78"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 40.0
+    y: -2.0
+    z: -40.0
+  }
+}
+embedded_instances {
+  id: "floor50"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 20.0
+    y: -2.0
+    z: 30.0
+  }
+}
+embedded_instances {
+  id: "floor36"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 30.0
+    y: -2.0
+  }
+}
+embedded_instances {
+  id: "floor77"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 30.0
+    y: -2.0
+    z: -40.0
+  }
+}
+embedded_instances {
+  id: "floor6"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    y: -2.0
+    z: 20.0
+  }
+}
+embedded_instances {
+  id: "floor33"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -10.0
+    y: -2.0
+    z: -20.0
+  }
+}
+embedded_instances {
+  id: "floor48"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    y: -2.0
+    z: 30.0
+  }
+}
+embedded_instances {
+  id: "floor40"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 30.0
+    y: -2.0
+    z: -10.0
+  }
+}
+embedded_instances {
+  id: "floor53"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -30.0
+    y: -2.0
+    z: 30.0
+  }
+}
+embedded_instances {
+  id: "floor74"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    y: -2.0
+    z: -40.0
+  }
+}
+embedded_instances {
+  id: "floor19"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -10.0
+    y: -2.0
+    z: 20.0
+  }
+}
+embedded_instances {
+  id: "floor42"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -40.0
+    y: -2.0
+  }
+}
+embedded_instances {
+  id: "floor35"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -30.0
+    y: -2.0
+    z: -30.0
+  }
+}
+embedded_instances {
+  id: "floor47"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -40.0
+    y: -2.0
+    z: -20.0
+  }
+}
+embedded_instances {
+  id: "floor49"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 10.0
+    y: -2.0
+    z: 30.0
+  }
+}
+embedded_instances {
+  id: "floor64"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 20.0
+    y: -2.0
+    z: 40.0
+  }
+}
+embedded_instances {
+  id: "floor9"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 20.0
+    y: -2.0
+    z: -30.0
+  }
+}
+embedded_instances {
+  id: "floor44"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -40.0
+    y: -2.0
+    z: 20.0
+  }
+}
+embedded_instances {
+  id: "floor68"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 30.0
+    y: -2.0
+    z: 40.0
+  }
+}
+embedded_instances {
+  id: "floor21"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -20.0
+    y: -2.0
+    z: 20.0
+  }
+}
+embedded_instances {
+  id: "floor32"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -20.0
+    y: -2.0
+    z: -20.0
+  }
+}
+embedded_instances {
+  id: "floor20"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -30.0
+    y: -2.0
+    z: 10.0
+  }
+}
+embedded_instances {
+  id: "floor54"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 30.0
+    y: -2.0
+    z: 30.0
+  }
+}
+embedded_instances {
+  id: "floor73"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 20.0
+    y: -2.0
+    z: -40.0
+  }
+}
+embedded_instances {
+  id: "floor14"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 10.0
+    y: -2.0
+    z: -20.0
+  }
+}
+embedded_instances {
+  id: "floor69"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 40.0
+    y: -2.0
+    z: 40.0
+  }
+}
+embedded_instances {
+  id: "floor62"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 40.0
+    y: -2.0
+    z: 30.0
+  }
+}
+embedded_instances {
+  id: "floor51"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -10.0
+    y: -2.0
+    z: 30.0
+  }
+}
+embedded_instances {
+  id: "floor72"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -20.0
+    y: -2.0
+    z: -40.0
+  }
+}
+embedded_instances {
+  id: "floor58"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 40.0
+    y: -2.0
+    z: 20.0
+  }
+}
+embedded_instances {
+  id: "floor55"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -40.0
+    y: -2.0
+    z: 30.0
+  }
+}
+embedded_instances {
+  id: "floor26"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -30.0
+    y: -2.0
+  }
+}
+embedded_instances {
+  id: "floor10"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 20.0
+    y: -2.0
+    z: -10.0
+  }
+}
+embedded_instances {
+  id: "floor56"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 40.0
+    y: -2.0
+  }
+}
+embedded_instances {
+  id: "floor37"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 30.0
+    y: -2.0
+    z: 10.0
+  }
+}
+embedded_instances {
+  id: "floor39"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 30.0
+    y: -2.0
+    z: -30.0
+  }
+}
+embedded_instances {
+  id: "floor30"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -20.0
+    y: -2.0
+    z: -10.0
+  }
+}
+embedded_instances {
+  id: "floor4"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 10.0
+    y: -2.0
+    z: 10.0
+  }
+}
+embedded_instances {
+  id: "floor13"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    y: -2.0
+    z: -10.0
+  }
+}
+embedded_instances {
+  id: "floor79"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -10.0
+    y: -2.0
+    z: -40.0
+  }
+}
+embedded_instances {
+  id: "floor5"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 20.0
+    y: -2.0
+    z: 10.0
+  }
+}
+embedded_instances {
+  id: "floor59"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 40.0
+    y: -2.0
+    z: -30.0
+  }
+}
+embedded_instances {
+  id: "floor1"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 10.0
+    y: -2.0
+  }
+}
+embedded_instances {
+  id: "floor29"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -30.0
+    y: -2.0
+    z: -20.0
+  }
+}
+embedded_instances {
+  id: "floor80"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -40.0
+    y: -2.0
+    z: -40.0
+  }
+}
+embedded_instances {
+  id: "floor27"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -10.0
+    y: -2.0
+    z: -30.0
+  }
+}
+embedded_instances {
+  id: "floor75"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -30.0
+    y: -2.0
+    z: -40.0
+  }
+}
+embedded_instances {
+  id: "floor"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    y: -2.0
+  }
+}
+embedded_instances {
+  id: "floor65"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    y: -2.0
+    z: 40.0
+  }
+}
+embedded_instances {
+  id: "floor31"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -30.0
+    y: -2.0
+    z: -10.0
+  }
+}
+embedded_instances {
+  id: "floor43"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -40.0
+    y: -2.0
+    z: 10.0
+  }
+}
+embedded_instances {
+  id: "floor60"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 40.0
+    y: -2.0
+    z: -10.0
+  }
+}
+embedded_instances {
+  id: "floor38"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 30.0
+    y: -2.0
+    z: 20.0
+  }
+}
+embedded_instances {
+  id: "floor12"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 10.0
+    y: -2.0
+    z: -10.0
+  }
+}
+embedded_instances {
+  id: "floor34"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: -20.0
+    y: -2.0
+    z: -30.0
+  }
+}
+embedded_instances {
+  id: "floor57"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 40.0
+    y: -2.0
+    z: 10.0
+  }
+}
+embedded_instances {
+  id: "floor67"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/assets/models/floor.model\"\n"
+  "  rotation {\n"
+  "    x: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 10.0
+    y: -2.0
+    z: 40.0
+  }
 }

@@ -79,8 +79,8 @@ function init(self)
         flags  = render.TEXTURE_BIT ---@diagnostic disable-line: undefined-field
     }
 
-    self.render_target = render.render_target(
-        "render_target",
+    self.g_buffer = render.render_target(
+        "g_buffer",
         {
             [graphics.BUFFER_TYPE_COLOR0_BIT] = color_params, -- color
             [graphics.BUFFER_TYPE_COLOR1_BIT] = normal_params, -- normals
@@ -107,7 +107,7 @@ function update(self)
 
     local predicates = self.predicates
 
-    render.set_render_target(self.render_target)
+    render.set_render_target(self.g_buffer)
     -- clear screen buffers
     --
     -- turn on depth_mask before `render.clear()` to clear it as well
@@ -161,9 +161,9 @@ function update(self)
     render.set_projection(screen_proj)
 
     render.enable_material("ssao_material")
-    render.enable_texture("color_sampler", self.render_target, graphics.BUFFER_TYPE_COLOR0_BIT)
-    render.enable_texture("position_sampler", self.render_target, graphics.BUFFER_TYPE_COLOR1_BIT)
-    render.enable_texture("normal_sampler", self.render_target, graphics.BUFFER_TYPE_COLOR2_BIT)
+    render.enable_texture("color_sampler", self.g_buffer, graphics.BUFFER_TYPE_COLOR0_BIT)
+    render.enable_texture("position_sampler", self.g_buffer, graphics.BUFFER_TYPE_COLOR1_BIT)
+    render.enable_texture("normal_sampler", self.g_buffer, graphics.BUFFER_TYPE_COLOR2_BIT)
     ssao_options.constants = self.constants
     ssao_options.constants.mtx_proj = camera.proj
     render.draw(predicates.screen, ssao_options)

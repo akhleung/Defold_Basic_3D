@@ -1,14 +1,14 @@
-mesh: "/builtins/assets/meshes/quad.dae"
-name: "unnamed"
+mesh: "/assets/models/quad-10x10.dae"
+name: "floor"
 materials {
   name: "default"
   material: "/materials/model.material"
   textures {
     sampler: "diffuse_map"
-    texture: "/assets/images/grey-brick.png"
+    texture: "/assets/images/tile-base.png"
   }
   textures {
     sampler: "normal_map"
-    texture: "/assets/images/grey-brick-normal.png"
+    texture: "/assets/images/tile-normal.png"
   }
 }
