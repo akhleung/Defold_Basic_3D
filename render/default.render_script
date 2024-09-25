@@ -43,7 +43,7 @@ function init(self)
     self.camera_gui.frustum = { frustum = self.camera_gui.proj * self.camera_gui.view }
     self.valid = render.get_window_width() > 0 and render.get_window_height() > 0
 
-    lighting_state.set_ambient_color(vmath.vector4(0.1, 0.1, 0.1, 1.0))
+    lighting_state.set_ambient_color(vmath.vector4(0.5, 0.5, 0.5, 1.0))
     lighting_state.set_sun_color(vmath.vector4(.7, .7, .7, 1.0))
     lighting_state.set_sun_direction(vmath.normalize(vmath.vector4(1, -1, -1, 1)))
 
@@ -132,7 +132,6 @@ function update(self)
     render_options.constants = self.constants
     render.enable_state(graphics.STATE_CULL_FACE)
     render.draw(predicates.model, render_options)
-    render.draw(predicates.ice, render_options)
     render.disable_state(graphics.STATE_CULL_FACE)
     render.draw(predicates.sprite, render_options)
     render.enable_state(graphics.STATE_CULL_FACE)
@@ -161,13 +160,11 @@ function update(self)
     render.set_projection(screen_proj)
 
     render.enable_material("ssao_material")
-    render.enable_texture("color_sampler", self.g_buffer, graphics.BUFFER_TYPE_COLOR0_BIT)
     render.enable_texture("position_sampler", self.g_buffer, graphics.BUFFER_TYPE_COLOR1_BIT)
     render.enable_texture("normal_sampler", self.g_buffer, graphics.BUFFER_TYPE_COLOR2_BIT)
     ssao_options.constants = self.constants
     ssao_options.constants.mtx_proj = camera.proj
     render.draw(predicates.screen, ssao_options)
-    render.disable_texture("color_sampler")
     render.disable_texture("position_sampler")
     render.disable_texture("normal_sampler")
     render.disable_material()
@@ -177,7 +174,7 @@ function update(self)
     -- render.set_view(i)
     -- render.set_projection(screen_proj)
     render.enable_material("screen_material")
-    render.enable_texture("render_sampler", self.ssao_target, graphics.BUFFER_TYPE_COLOR0_BIT)
+    render.enable_texture("render_sampler", self.g_buffer, graphics.BUFFER_TYPE_COLOR0_BIT)
     render.draw(predicates.screen)
     render.disable_texture("render_sampler")
     render.disable_material()

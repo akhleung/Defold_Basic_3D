@@ -8,6 +8,7 @@ in vec2 var_texcoord0;
 
 uniform sampler2D diffuse_map;
 uniform sampler2D normal_map;
+uniform sampler2D specular_map;
 
 uniform model_fp {
     mat4 mtx_view;
@@ -82,7 +83,8 @@ float specular(vec3 view_dir, vec3 light_dir, vec3 normal) {
 
 void main() {
     vec3 view_dir = normalize(-var_frag_pos);
-    vec4 mat_spec = vec4(shininess.xyz, 1.0);
+    // vec4 mat_spec = vec4(shininess.xyz, 1.0);
+    vec4 mat_spec = vec4(texture(specular_map, var_texcoord0).xyz, 1.0);
     float spec_exp = shininess.w;
 
     mat3 tbn = get_tbn_mtx();

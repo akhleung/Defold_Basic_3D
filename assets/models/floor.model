@@ -2,13 +2,17 @@ mesh: "/assets/models/quad-10x10.dae"
 name: "floor"
 materials {
   name: "default"
-  material: "/materials/model.material"
+  material: "/materials/geometry/model.material"
   textures {
     sampler: "diffuse_map"
-    texture: "/assets/images/tile-base.png"
+    texture: "/assets/images/textures-diffuse.png"
   }
   textures {
     sampler: "normal_map"
-    texture: "/assets/images/tile-normal.png"
+    texture: "/assets/images/textures-normal.png"
+  }
+  textures {
+    sampler: "specular_map"
+    texture: "/assets/images/textures-specular.png"
   }
 }

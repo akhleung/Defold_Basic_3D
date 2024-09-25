@@ -567,7 +567,7 @@ embedded_instances {
   "name: \\\"{{NAME}}\\\"\\n"
   "materials {\\n"
   "  name: \\\"default\\\"\\n"
-  "  material: \\\"/materials/ssao.material\\\"\\n"
+  "  material: \\\"/materials/postprocessing/ssao/ssao.material\\\"\\n"
   "}\\n"
   "\"\n"
   "}\n"
@@ -679,6 +679,9 @@ embedded_instances {
   children: "floor80"
   children: "floor9"
   data: ""
+  position {
+    y: 0.5
+  }
 }
 embedded_instances {
   id: "floor52"

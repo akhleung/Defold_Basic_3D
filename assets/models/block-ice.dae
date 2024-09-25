@@ -87,9 +87,9 @@
                 </source>
                 <source id="Plane_001-UV0">
                     <float_array id="Plane_001-UV0-array" count="8">
-                        0.000000 0.000000
-                        1.000000 0.000000
-                        0.000000 1.000000
+                        0.500000 0.500000
+                        1.000000 0.500000
+                        0.500000 1.000000
                         1.000000 1.000000
                     </float_array>
                     <technique_common>

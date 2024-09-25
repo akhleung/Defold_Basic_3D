@@ -2,12 +2,6 @@
 
 in vec2 var_texcoord0;
 
-uniform ssao_fp {
-	mat4 mtx_proj;
-	vec4 resolution;
-};
-
-uniform sampler2D color_sampler;
 uniform sampler2D normal_sampler;
 uniform sampler2D position_sampler;
 

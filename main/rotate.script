@@ -1,3 +1,15 @@
+local embiggen
+local emsmallen
+
 function init(self)
-	go.animate(".", "euler.x", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 16)
+	-- go.animate(".", "euler.x", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 16)
+	embiggen()
+end
+
+embiggen = function ()
+	go.animate(".", "scale", go.PLAYBACK_ONCE_FORWARD, 1.2, go.EASING_INOUTBACK, .25, 3, emsmallen)
+end
+
+emsmallen = function ()
+	go.animate(".", "scale", go.PLAYBACK_ONCE_FORWARD, 1, go.EASING_INOUTBACK, .25, 3, embiggen)
 end

@@ -1,14 +1,18 @@
-mesh: "/assets/models/block.dae"
+mesh: "/assets/models/block-ice.dae"
 name: "unnamed"
 materials {
   name: "default"
-  material: "/materials/ice.material"
+  material: "/materials/geometry/model.material"
   textures {
     sampler: "diffuse_map"
-    texture: "/assets/images/broken-ice-base.png"
+    texture: "/assets/images/textures-diffuse.png"
   }
   textures {
     sampler: "normal_map"
-    texture: "/assets/images/broken-ice-normal.png"
+    texture: "/assets/images/textures-normal.png"
+  }
+  textures {
+    sampler: "specular_map"
+    texture: "/assets/images/textures-specular.png"
   }
 }
