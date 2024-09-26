@@ -100,6 +100,7 @@ end
 local screen_proj = vmath.matrix4_orthographic(-.5, .5, -.5, .5, -1, 1)
 local render_options = {}
 local ssao_options = {}
+local lighting_options = {}
 function update(self)
     if not self.valid then return end
 
@@ -174,9 +175,17 @@ function update(self)
     -- render.set_view(i)
     -- render.set_projection(screen_proj)
     render.enable_material("screen_material")
-    render.enable_texture("render_sampler", self.g_buffer, graphics.BUFFER_TYPE_COLOR0_BIT)
-    render.draw(predicates.screen)
-    render.disable_texture("render_sampler")
+    render.enable_texture("diffuse_sampler", self.g_buffer, graphics.BUFFER_TYPE_COLOR0_BIT)
+    render.enable_texture("position_sampler", self.g_buffer, graphics.BUFFER_TYPE_COLOR1_BIT)
+    render.enable_texture("normal_sampler", self.g_buffer, graphics.BUFFER_TYPE_COLOR2_BIT)
+    render.enable_texture("ssao_sampler", self.ssao_target, graphics.BUFFER_TYPE_COLOR0_BIT)
+    lighting_options.constants = self.constants
+    lighting_options.constants.mtx_view = camera.view
+    render.draw(predicates.screen, lighting_options)
+    render.disable_texture("diffuse_sampler")
+    render.disable_texture("position_sampler")
+    render.disable_texture("normal_sampler")
+    render.disable_texture("ssao_sampler")
     render.disable_material()
 
     -- render GUI
