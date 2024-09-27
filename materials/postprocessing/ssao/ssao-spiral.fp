@@ -8,10 +8,10 @@ uniform sampler2D position_sampler;
 out vec4 frag_color;
 
 #define SAMPLES 16
-#define INTENSITY 2.0
+#define INTENSITY 1.5
 #define SCALE 1
 #define BIAS 0.01
-#define SAMPLE_RAD 0.25
+#define SAMPLE_RAD 0.2
 #define MAX_DISTANCE 0.5
 
 const vec3 mod3 = vec3(.1031, .11369, .13787);
