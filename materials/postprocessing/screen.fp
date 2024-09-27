@@ -1,4 +1,4 @@
-#version 420
+#version 420 core
 
 #define MAX_LIGHTS 16
 
@@ -63,12 +63,16 @@ void main() {
 
 	frag_color = texture(ssao_sampler, var_texcoord0);
 
-    vec4 color = ambient_color * mat_diff * texture(ssao_sampler, var_texcoord0).x;
+    float ao = texture(ssao_sampler, var_texcoord0).x;
+    float blur = texture(ssao_sampler, var_texcoord0).y;
+    ao = blur;
+
+    vec4 color = ambient_color * mat_diff * ao * ao;
 
     // directional (i.e., sun) light
     vec3 sun_dir = mat3(mtx_view) * normalize(-sun_direction.xyz);
     float sun_spec = specular(view_dir, sun_dir, normal);
-    float sun_diff = diffuse(sun_dir, normal);
+    float sun_diff = diffuse(sun_dir, normal) * ao * ao;
     color += (sun_diff * mat_diff + pow(sun_spec, spec_exp) * mat_spec) * sun_color;
 
     for (int i = 0; i < num_lights.x; ++i) {
@@ -81,6 +85,7 @@ void main() {
     }
 
     color.a = mat_diff.a;
-    color = texture(ssao_sampler, var_texcoord0);
+    // color = texture(ssao_sampler, var_texcoord0);
+    // color = vec4(blur, blur, blur, 1.0);
     frag_color = clamp(color, 0.0, 1.0);
 }

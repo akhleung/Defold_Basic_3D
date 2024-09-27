@@ -7,3 +7,7 @@ render_resources {
   name: "ssao_material"
   path: "/materials/postprocessing/ssao/ssao.material"
 }
+render_resources {
+  name: "blur_material"
+  path: "/materials/postprocessing/ssao/blur.material"
+}

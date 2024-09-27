@@ -1,0 +1,18 @@
+name: "blur"
+tags: "screen"
+vertex_program: "/materials/postprocessing/screen.vp"
+fragment_program: "/materials/postprocessing/ssao/blur.fp"
+vertex_constants {
+  name: "mtx_viewproj"
+  type: CONSTANT_TYPE_VIEWPROJ
+  value {
+  }
+}
+samplers {
+  name: "ssao_sampler"
+  wrap_u: WRAP_MODE_REPEAT
+  wrap_v: WRAP_MODE_REPEAT
+  filter_min: FILTER_MODE_MIN_NEAREST
+  filter_mag: FILTER_MODE_MAG_NEAREST
+  max_anisotropy: 0.0
+}

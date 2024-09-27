@@ -231,12 +231,12 @@ embedded_instances {
   "  component: \"/lighting/point_light.script\"\n"
   "  properties {\n"
   "    id: \"radii\"\n"
-  "    value: \"0.0, 1.0, 0.0, 0.0\"\n"
+  "    value: \"10.0, 30.0, 0.0, 0.0\"\n"
   "    type: PROPERTY_TYPE_VECTOR4\n"
   "  }\n"
   "  properties {\n"
   "    id: \"color\"\n"
-  "    value: \"1.0, 1.0, 1.0, 1.0\"\n"
+  "    value: \"0.0, 0.0, 0.0, 1.0\"\n"
   "    type: PROPERTY_TYPE_VECTOR4\n"
   "  }\n"
   "}\n"
@@ -244,7 +244,7 @@ embedded_instances {
   position {
     x: 8.0
     y: 2.0
-    z: 7.0
+    z: 3.0
   }
 }
 embedded_instances {
