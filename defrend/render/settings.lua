@@ -2,6 +2,7 @@ local M = {
 	resolution_x = 0,
 	resolution_y = 0,
 	scene_camera_url = nil,
+	scene_camera_inv = vmath.matrix4(),
 	geometry = {
 		models_enabled = true,
 		sprites_enabled = true,

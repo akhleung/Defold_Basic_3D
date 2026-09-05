@@ -181,6 +181,10 @@ instances {
     x: 2.0
     z: 6.0
   }
+  rotation {
+    z: 0.38268343
+    w: 0.9238795
+  }
   scale3 {
     x: 3.0
     y: 3.0
@@ -374,6 +378,10 @@ instances {
   prototype: "/example/assets/billboards/flowerbed/flower.go"
   position {
     z: 6.0
+  }
+  rotation {
+    z: 0.38268343
+    w: 0.9238795
   }
   scale3 {
     x: 3.0
@@ -1169,16 +1177,12 @@ instances {
 instances {
   id: "sheep1"
   prototype: "/example/assets/billboards/sheep/sheep.go"
-  position {
-    y: 2.0
-  }
 }
 instances {
   id: "weeds_big"
   prototype: "/example/assets/billboards/weeds/weeds_big.go"
   position {
     x: -6.0
-    y: 0.7
     z: 2.0
   }
 }
@@ -1187,7 +1191,6 @@ instances {
   prototype: "/example/assets/billboards/weeds/weeds_big.go"
   position {
     x: 7.0
-    y: 0.7
     z: -4.0
   }
 }
@@ -1196,7 +1199,6 @@ instances {
   prototype: "/example/assets/billboards/weeds/weeds_big.go"
   position {
     x: -2.0
-    y: 0.7
     z: -6.0
   }
 }
@@ -1205,7 +1207,6 @@ instances {
   prototype: "/example/assets/billboards/weeds/weeds_small.go"
   position {
     x: 2.0
-    y: 0.6
     z: 3.0
   }
 }
@@ -1214,7 +1215,6 @@ instances {
   prototype: "/example/assets/billboards/weeds/weeds_small.go"
   position {
     x: -6.0
-    y: 0.6
     z: 4.0
   }
 }
@@ -1223,7 +1223,6 @@ instances {
   prototype: "/example/assets/billboards/weeds/weeds_small.go"
   position {
     x: -6.0
-    y: 0.6
   }
 }
 instances {
@@ -1231,7 +1230,6 @@ instances {
   prototype: "/example/assets/billboards/weeds/weeds_small.go"
   position {
     x: -4.0
-    y: 0.6
     z: -5.0
   }
 }
@@ -1240,7 +1238,6 @@ instances {
   prototype: "/example/assets/billboards/weeds/weeds_small.go"
   position {
     x: -1.0
-    y: 0.6
     z: -4.0
   }
 }
@@ -1249,7 +1246,6 @@ instances {
   prototype: "/example/assets/billboards/weeds/weeds_small.go"
   position {
     x: -1.0
-    y: 0.6
     z: -8.0
   }
 }
@@ -1258,7 +1254,6 @@ instances {
   prototype: "/example/assets/billboards/weeds/weeds_small.go"
   position {
     x: 3.0
-    y: 0.6
     z: 4.0
   }
 }
@@ -1267,7 +1262,6 @@ instances {
   prototype: "/example/assets/billboards/weeds/weeds_small.go"
   position {
     x: 6.0
-    y: 0.6
     z: -2.0
   }
 }
@@ -1276,7 +1270,6 @@ instances {
   prototype: "/example/assets/billboards/weeds/weeds_small.go"
   position {
     x: 8.0
-    y: 0.6
     z: -4.0
   }
 }
@@ -1285,7 +1278,6 @@ instances {
   prototype: "/example/assets/billboards/weeds/weeds_small.go"
   position {
     x: 5.0
-    y: 0.6
     z: -5.0
   }
 }
@@ -3574,7 +3566,6 @@ embedded_instances {
   children: "flower8"
   data: ""
   position {
-    y: 1.5
     z: 6.0
   }
 }
@@ -3599,7 +3590,6 @@ embedded_instances {
   children: "flower9"
   data: ""
   position {
-    y: 1.5
     z: -20.0
   }
 }
@@ -3625,7 +3615,6 @@ embedded_instances {
   data: ""
   position {
     x: 25.0
-    y: 1.5
     z: -20.0
   }
 }
@@ -3651,7 +3640,6 @@ embedded_instances {
   data: ""
   position {
     x: -25.0
-    y: 1.5
     z: -20.0
   }
 }
@@ -3673,6 +3661,7 @@ embedded_instances {
   data: ""
   position {
     x: 25.0
+    y: 1.0
     z: 27.0
   }
 }
@@ -3694,6 +3683,7 @@ embedded_instances {
   data: ""
   position {
     x: 25.0
+    y: 0.3
     z: 27.0
   }
 }

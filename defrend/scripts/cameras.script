@@ -9,6 +9,7 @@ go.property("scene_camera_url", msg.url())
 
 local function do_init(self)
 	settings.scene_camera_url = self.scene_camera_url
+	settings.scene_camera_inv = vmath.inv(camera.get_view(settings.scene_camera_url))
 	msg.post(self.scene_camera_url, MSG_ENABLE)
 end
 
@@ -25,4 +26,8 @@ end
 
 function on_reload(self)
 	do_init(self)
+end
+
+function update(self, dt)
+	settings.scene_camera_inv = vmath.inv(camera.get_view(settings.scene_camera_url))
 end

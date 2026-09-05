@@ -2,17 +2,19 @@
 
 in vec4 position;
 in vec2 texcoord0;
-
+in vec3 normal;
 #ifndef EDITOR
 in mat4 mtx_world;
+in mat4 mtx_normal;
 #endif
 
-uniform billboard_vp {
-	#ifdef EDITOR
-	mat4 mtx_world;
-	#endif
-	mat4 mtx_view;
-	mat4 mtx_proj;
+uniform model_vp {
+    #ifdef EDITOR
+    mat4 mtx_world;
+    mat4 mtx_normal;
+    #endif
+    mat4 mtx_view;
+    mat4 mtx_proj;
 };
 
 out vec3 var_frag_pos;
@@ -20,31 +22,9 @@ out vec3 var_normal;
 out vec2 var_texcoord0;
 
 void main() {
-
-	// flatten the billboard model -- we're using boxes in order to get correct frustum culling on the CPU side
-	vec4 flatpos = vec4(position.xy, 0, position.w);
-
-	mat4 mtx_worldview = mtx_view * mtx_world;
-	float x_scale = length(mtx_worldview[0]);
-	float y_scale = length(mtx_worldview[1]);
-	float z_scale = length(mtx_worldview[2]);
-
-	mtx_worldview[0][0] = x_scale;
-	mtx_worldview[0][1] = 0;
-	mtx_worldview[0][2] = 0;
-
-	// uncomment to billboard against changes in elevation too
-	// mtx_worldview[1][0] = 0;
-	// mtx_worldview[1][1] = y_scale;
-	// mtx_worldview[1][2] = 0;
-
-	mtx_worldview[2][0] = 0;
-	mtx_worldview[2][1] = 0;
-	mtx_worldview[2][2] = z_scale;
-	
-	var_frag_pos	= (mtx_worldview * flatpos).xyz;
-	var_normal		= normalize(-var_frag_pos);
-	var_texcoord0	= texcoord0;
-
-	gl_Position		= mtx_proj * mtx_worldview * flatpos;
+    vec4 p = mtx_view * mtx_world * vec4(position.xyz, 1.0);
+    var_frag_pos = p.xyz;
+    var_normal = normalize((mtx_normal * vec4(normal, 0.0)).xyz);
+    var_texcoord0 = texcoord0;
+    gl_Position = mtx_proj * p;
 }

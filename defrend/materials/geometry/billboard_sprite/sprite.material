@@ -7,12 +7,12 @@ vertex_constants {
   type: CONSTANT_TYPE_PROJECTION
 }
 vertex_constants {
-  name: "mtx_worldview"
-  type: CONSTANT_TYPE_WORLDVIEW
+  name: "mtx_normal"
+  type: CONSTANT_TYPE_NORMAL
 }
 vertex_constants {
-  name: "mtx_viewproj"
-  type: CONSTANT_TYPE_VIEWPROJ
+  name: "mtx_view"
+  type: CONSTANT_TYPE_VIEW
 }
 samplers {
   name: "albedo_map"
@@ -37,9 +37,4 @@ samplers {
   filter_min: FILTER_MODE_MIN_NEAREST
   filter_mag: FILTER_MODE_MAG_NEAREST
   max_anisotropy: 0.0
-}
-attributes {
-  name: "local_position"
-  semantic_type: SEMANTIC_TYPE_POSITION
-  vector_type: VECTOR_TYPE_VEC3
 }

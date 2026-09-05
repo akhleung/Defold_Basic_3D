@@ -1,4 +1,4 @@
-mesh: "/example/assets/logo/block.dae"
+mesh: "/builtins/assets/gltf/quad.gltf"
 name: "grass"
 materials {
   name: "default"

@@ -2,6 +2,15 @@ components {
   id: "sheep"
   component: "/example/assets/billboards/sheep/sheep.script"
 }
+components {
+  id: "billboard"
+  component: "/defrend/scripts/controllers/billboard.script"
+  properties {
+    id: "pitch_factor"
+    value: "0.5"
+    type: PROPERTY_TYPE_NUMBER
+  }
+}
 embedded_components {
   id: "sprite"
   type: "sprite"
@@ -25,4 +34,7 @@ embedded_components {
   "  texture: \"/example/assets/billboards/matte.tilesource\"\n"
   "}\n"
   ""
+  position {
+    y: 1.026544
+  }
 }

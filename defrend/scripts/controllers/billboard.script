@@ -1,0 +1,19 @@
+local settings = require "defrend.render.settings"
+
+go.property("roll", 0)
+go.property("pitch_factor", 0)
+
+function init(self)
+	r_quat = go.get_rotation()
+	_, _, z = vmath.quat_to_euler(r_quat)
+	self.roll = z
+	self.pitch_factor = vmath.clamp(self.pitch_factor, 0, 1)
+end
+
+function update(self, dt)
+	local z_quat = vmath.euler_to_quat(0, 0, self.roll)
+	local r_quat = vmath.quat_matrix4(settings.scene_camera_inv)
+	local x, y, _ = vmath.quat_to_euler(r_quat)
+	r_quat = vmath.euler_to_quat(x * self.pitch_factor, y, 0)
+	go.set_rotation(r_quat * z_quat) -- apply z-rotation separately here so that it happens after the billboarding
+end
