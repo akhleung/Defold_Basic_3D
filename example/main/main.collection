@@ -3661,7 +3661,6 @@ embedded_instances {
   data: ""
   position {
     x: 25.0
-    y: 1.0
     z: 27.0
   }
 }
@@ -3683,7 +3682,6 @@ embedded_instances {
   data: ""
   position {
     x: 25.0
-    y: 0.3
     z: 27.0
   }
 }

@@ -35,6 +35,6 @@ embedded_components {
   "}\n"
   ""
   position {
-    y: 1.026544
+    y: 2.0
   }
 }
