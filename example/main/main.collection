@@ -1289,6 +1289,19 @@ instances {
     z: 27.0
   }
 }
+instances {
+  id: "tree_bill"
+  prototype: "/example/assets/models/tree_bill.go"
+  position {
+    x: -0.669662
+    z: 27.845219
+  }
+  scale3 {
+    x: 8.0
+    y: 8.0
+    z: 8.0
+  }
+}
 collection_instances {
   id: "defrend"
   collection: "/defrend/defrend.collection"

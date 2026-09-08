@@ -1,14 +1,24 @@
 name: "particle"
 tags: "shadowless_particle"
-vertex_program: "/defrend/materials/geometry/billboard_sprite/particle.vp"
+vertex_program: "/defrend/materials/geometry/billboard_sprite/sprite.vp"
 fragment_program: "/defrend/materials/geometry/billboard_sprite/particle.fp"
 vertex_constants {
   name: "mtx_proj"
   type: CONSTANT_TYPE_PROJECTION
 }
 vertex_constants {
-  name: "mtx_viewproj"
-  type: CONSTANT_TYPE_VIEWPROJ
+  name: "mtx_view"
+  type: CONSTANT_TYPE_VIEW
+}
+vertex_constants {
+  name: "mtx_view_inv"
+  type: CONSTANT_TYPE_VIEW_INVERSE
+}
+vertex_constants {
+  name: "params"
+  type: CONSTANT_TYPE_USER
+  value {
+  }
 }
 fragment_constants {
   name: "spec_glow_dith"
@@ -25,7 +35,12 @@ samplers {
   max_anisotropy: 0.0
 }
 attributes {
-  name: "local_position"
+  name: "position"
   semantic_type: SEMANTIC_TYPE_POSITION
-  vector_type: VECTOR_TYPE_VEC3
+}
+attributes {
+  name: "mtx_world"
+  semantic_type: SEMANTIC_TYPE_WORLD_MATRIX
+  coordinate_space: COORDINATE_SPACE_WORLD
+  vector_type: VECTOR_TYPE_MAT4
 }

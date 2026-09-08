@@ -2,15 +2,6 @@ components {
   id: "weeds"
   component: "/example/assets/billboards/weeds/weeds.script"
 }
-components {
-  id: "billboard"
-  component: "/defrend/scripts/controllers/billboard.script"
-  properties {
-    id: "pitch_factor"
-    value: "0.5"
-    type: PROPERTY_TYPE_NUMBER
-  }
-}
 embedded_components {
   id: "sprite"
   type: "sprite"
