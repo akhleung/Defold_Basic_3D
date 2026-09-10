@@ -23,7 +23,7 @@ bool odd(float x) {
 void main() {
 	float x = gl_FragCoord.x;
 	float y = gl_FragCoord.y;
-	bool dither = spec_glow_dith.z > 0 && (even(x) && odd(y) || odd(x) && even(y));
+	bool dither = (spec_glow_dith.z > 0) && (even(x) ? odd(y) : even(y));
 	vec4 albedo	= texture(albedo_map, var_texcoord0);
 	if (dither || albedo.a == 0) discard; // avoid writing to the depth buffer, normals, etc
 
